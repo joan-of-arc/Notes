@@ -15,7 +15,7 @@ void InOrder(nodo *Root);
 void PreOrder(nodo *Root);
 void PostOrder(nodo *Root);
 void OrdInsert(nodo *&root, int n);
-void Create(nodo *&rad, int Depth);
+void Create(nodo *&rad, int Depth);//no
 nodo *Min(nodo *Root);
 int GetDepth(nodo *Root, int Depth);
 void MorrisTrasversal(nodo *Root);//non so se funziona
