@@ -28,8 +28,9 @@ int main()
 
     nodo *Root = nullptr;
 
-    Create(Root, 3);
+    OrdInsert(Root, 10);
     Print(Root, 0);
+
 
     //MorrisTrasversal(rad);
 
@@ -86,7 +87,7 @@ void PostOrder(nodo *Root)//sx, dx, rad
 
 void OrdInsert(nodo *&Root, int n)//inserisce n nodi nell'albero binario in modo ordinato
 {
-    for(int i=0; i<n; i++)
+    for(int i=0; i < n; i++)
     {
         nodo *nuovo = new nodo{rand()%10, nullptr, nullptr};
 
@@ -131,7 +132,7 @@ void Create(nodo *&Root, int Depth)//crea un albero binario di profondità Depth
     }
 }
 
-nodo *Min(nodo *Root)//restituisce il nodo con il valore minore
+nodo *Min(nodo *Root)//return the node with the minimum value
 {
     if (!Root)
         return nullptr;
@@ -150,10 +151,10 @@ nodo *Min(nodo *Root)//restituisce il nodo con il valore minore
     return Min;
 }
 
-int GetDepth(nodo *Root, int Depth)//restituisce la profondità dell'albero binario
+int GetDepth(nodo *Root, int Depth = 0)//return the depths of the tree
 {
     if (!Root)
-        return Depth-1;
+        return Depth;
 
     int MaxSx = GetDepth(Root->sx, Depth + 1);
     int MaxDx = GetDepth(Root->dx, Depth + 1);
@@ -212,11 +213,11 @@ nodo *InsBalanced(int n)//create a balanced tree with n nodes, balanced doesnt m
     {
         nodo *New = new nodo{rand()%100, nullptr, nullptr};//new node
 
-        int dx=n/2; //calculate the number of nodes for the right subtree
-        int sx=n-dx-1; //calculate the number of nodes for the left subtree
+        int dx = n/2; //calculate the number of nodes for the right subtree 
+        int sx = n-dx-1; //calculate the number of nodes for the left subtree
 
-        New->dx=InsBalanced(dx);
-        New->sx=InsBalanced(sx);
+        New->dx = InsBalanced(dx);
+        New->sx = InsBalanced(sx);
 
         return New;
     }
