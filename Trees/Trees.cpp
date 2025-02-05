@@ -166,7 +166,7 @@ int GetDepth(nodo *Root, int Depth)//restituisce la profondità dell'albero bina
 void MorrisTrasversal(nodo *Root)
 {
     nodo *c = Root;
-    while (!c)
+    while (c)
     {
         if (c->sx)
         {
