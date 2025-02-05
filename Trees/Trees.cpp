@@ -20,6 +20,7 @@ nodo *Min(nodo *Root);
 int GetDepth(nodo *Root, int Depth);
 void MorrisTrasversal(nodo *Root);//non so se funziona
 nodo *Search(nodo *Root, int Value);
+nodo *InsBalanced(int n);
 
 int main()
 {
@@ -163,7 +164,7 @@ int GetDepth(nodo *Root, int Depth)//restituisce la profondità dell'albero bina
         return MaxSx;
 }
 
-void MorrisTrasversal(nodo *Root)
+void MorrisTrasversal(nodo *Root)//print but without recursion
 {
     nodo *c = Root;
     while (c)
@@ -173,7 +174,7 @@ void MorrisTrasversal(nodo *Root)
             nodo *p = c->sx;
             while (p->dx && p->dx != c)
                 p = p->dx;
-            
+
             if (!p->dx)
             {
                 p->dx = c;
@@ -194,7 +195,7 @@ void MorrisTrasversal(nodo *Root)
     }
 }
 
-nodo *Search(nodo *Root, int Value)
+nodo *Search(nodo *Root, int Value)//search a value in the tree and return the node
 {
     if (!Root || Root->value == Value)
         return Root;
@@ -203,4 +204,24 @@ nodo *Search(nodo *Root, int Value)
         return Search(Root->dx, Value);
 
     return Search(Root->sx, Value);
+}
+
+nodo *InsBalanced(int n)//create a balanced tree with n nodes, balanced doesnt mean in order
+{
+    if(n)
+    {
+        nodo *New = new nodo{rand()%100, nullptr, nullptr};//new node
+
+        int dx=n/2; //calculate the number of nodes for the right subtree
+        int sx=n-dx-1; //calculate the number of nodes for the left subtree
+
+        New->dx=InsBalanced(dx);
+        New->sx=InsBalanced(sx);
+
+        return New;
+    }
+    else
+    {  //exit condition
+        return nullptr;
+    }
 }
