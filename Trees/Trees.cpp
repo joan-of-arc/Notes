@@ -18,7 +18,7 @@ void OrdInsert(nodo *&root, int n);
 void Create(nodo *&rad, int Depth);//no
 nodo *Min(nodo *Root);
 int GetDepth(nodo *Root, int Depth);
-void MorrisTrasversal(nodo *Root);//non so se funziona
+void MorrisTrasversal(nodo *Root);
 nodo *Search(nodo *Root, int Value);
 nodo *InsBalanced(int n);
 
@@ -26,20 +26,26 @@ int main()
 {
     srand(time(0));
 
-    nodo *Root = nullptr;
+    nodo *Root = InsBalanced(10);
 
-    OrdInsert(Root, 10);
+    //OrdInsert(Root, 10);
+
+    //Create(Root, 3);
     Print(Root, 0);
 
-
-    //MorrisTrasversal(rad);
+    cout << endl;
+    InOrder(Root);
+    cout << endl;
+    PostOrder(Root);
+    cout << endl;
+    PreOrder(Root);
 
     return 0;
 }
 
 void Print(nodo *Root, int Lvl)//stampa l'albero binario
 {
-    if (Root)
+    if (Root != nullptr)
     {
         int k = Lvl;
         while (k>0)
@@ -55,33 +61,33 @@ void Print(nodo *Root, int Lvl)//stampa l'albero binario
     }
 }
 
-void InOrder(nodo *Root)//sx, rad, dx
+void InOrder(nodo *Root)//sx, current, dx 
 {
     if (Root)
     {
         InOrder(Root->sx);
-        cout << Root->value << endl;
+        cout << Root->value << " ";
         InOrder(Root->dx);
     }
 }
 
-void PreOrder(nodo *Root)//rad, sx, dx
+void PreOrder(nodo *Root)//current, sx, dx 
 {
     if(Root)
     {
-        cout << Root->value << endl;
+        cout << Root->value << " ";
         PreOrder(Root->sx);
         PreOrder(Root->dx);
     }
 }
 
-void PostOrder(nodo *Root)//sx, dx, rad
+void PostOrder(nodo *Root)//sx, dx, current
 {
     if (Root)
     {
         PostOrder(Root->sx);
         PostOrder(Root->dx);
-        cout << Root->value << endl;
+        cout << Root->value << " ";
     }
 }
 
@@ -98,7 +104,7 @@ void OrdInsert(nodo *&Root, int n)//inserisce n nodi nell'albero binario in modo
         else
         {
             nodo *x = Root; 
-            nodo *y = nullptr; 
+            nodo *y = nullptr;
 
             while(x)
             {
@@ -151,7 +157,7 @@ nodo *Min(nodo *Root)//return the node with the minimum value
     return Min;
 }
 
-int GetDepth(nodo *Root, int Depth = 0)//return the depths of the tree
+int GetDepth(nodo *Root, int Depth)//return the depths of the tree
 {
     if (!Root)
         return Depth;
