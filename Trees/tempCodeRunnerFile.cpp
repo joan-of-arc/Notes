@@ -1,1 +1,0 @@
-OrdInsert(Root, 10);
